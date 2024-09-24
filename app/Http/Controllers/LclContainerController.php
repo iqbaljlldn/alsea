@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lcl_container;
-use App\Http\Requests\StoreLcl_containerRequest;
-use App\Http\Requests\UpdateLcl_containerRequest;
+use App\Http\Requests\Lcl_containerRequest;
 
 class LclContainerController extends Controller
 {
@@ -27,7 +26,7 @@ class LclContainerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreLcl_containerRequest $request)
+    public function store(Lcl_containerRequest $request)
     {
         //
     }
@@ -50,8 +49,7 @@ class LclContainerController extends Controller
 
     /**
      * Update the specified resource in storage.
-     */
-    public function update(UpdateLcl_containerRequest $request, Lcl_container $lcl_container)
+     */public function update(Lcl_containerRequest $request, Lcl_container $lcl_container)
     {
         //
     }

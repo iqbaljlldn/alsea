@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\History;
-use App\Http\Requests\StoreHistoryRequest;
-use App\Http\Requests\UpdateHistoryRequest;
+use App\Http\Requests\HistoryRequest;
 
 class HistoryController extends Controller
 {
@@ -27,7 +26,7 @@ class HistoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreHistoryRequest $request)
+    public function store(HistoryRequest $request)
     {
         //
     }
@@ -51,7 +50,7 @@ class HistoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateHistoryRequest $request, History $history)
+    public function update(HistoryRequest $request, History $history)
     {
         //
     }

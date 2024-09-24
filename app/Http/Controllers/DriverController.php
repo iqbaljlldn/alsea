@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Driver;
-use App\Http\Requests\StoreDriverRequest;
-use App\Http\Requests\UpdateDriverRequest;
+use App\Http\Requests\DriverRequest;
 
 class DriverController extends Controller
 {
@@ -27,7 +26,7 @@ class DriverController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreDriverRequest $request)
+    public function store(DriverRequest $request)
     {
         //
     }
@@ -51,7 +50,7 @@ class DriverController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDriverRequest $request, Driver $driver)
+    public function update(DriverRequest $request, Driver $driver)
     {
         //
     }

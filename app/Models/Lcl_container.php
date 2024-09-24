@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\History;
+use App\Models\Shipment;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Lcl_container extends Model
 {
@@ -18,4 +21,14 @@ class Lcl_container extends Model
         'type_truck',
         'size_truck',
     ];
+
+    public function shipment()
+    {
+        return $this->belongsTo(Shipment::class, 'shipment_id', 'id');
+    }
+
+    public function history()
+    {
+        return $this->morphOne(History::class, 'container');
+    }
 }

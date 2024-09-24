@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Notif;
-use App\Http\Requests\StoreNotifRequest;
-use App\Http\Requests\UpdateNotifRequest;
+use App\Http\Requests\NotifRequest;
 
 class NotifController extends Controller
 {
@@ -27,7 +26,7 @@ class NotifController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreNotifRequest $request)
+    public function store(NotifRequest $request)
     {
         //
     }
@@ -51,7 +50,7 @@ class NotifController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateNotifRequest $request, Notif $notif)
+    public function update(NotifRequest $request, Notif $notif)
     {
         //
     }

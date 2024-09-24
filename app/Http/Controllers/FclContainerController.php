@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fcl_container;
-use App\Http\Requests\StoreFcl_containerRequest;
-use App\Http\Requests\UpdateFcl_containerRequest;
+use App\Http\Requests\Fcl_containerRequest;
 
 class FclContainerController extends Controller
 {
@@ -27,7 +26,7 @@ class FclContainerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreFcl_containerRequest $request)
+    public function store(Fcl_containerRequest $request)
     {
         //
     }
@@ -51,7 +50,7 @@ class FclContainerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateFcl_containerRequest $request, Fcl_container $fcl_container)
+    public function update(Fcl_containerRequest $request, Fcl_container $fcl_container)
     {
         //
     }

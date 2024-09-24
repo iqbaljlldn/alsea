@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAttachmentRequest extends FormRequest
+class HistoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class UpdateAttachmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'shipment_id' => 'required|exists:shipments,id',
+            'related_id' => 'required',
+            'related_type' => 'required|in:App\Models\Fcl_container, App\Models\Lcl_container',
+            'user_id' => 'required|exists:users,id',
+            'action_type' => 'required',
         ];
     }
 }

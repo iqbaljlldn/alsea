@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shipment;
-use App\Http\Requests\StoreShipmentRequest;
-use App\Http\Requests\UpdateShipmentRequest;
+use App\Http\Requests\ShipmentRequest;
 
 class ShipmentController extends Controller
 {
@@ -27,7 +26,7 @@ class ShipmentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreShipmentRequest $request)
+    public function store(ShipmentRequest $request)
     {
         //
     }
@@ -51,7 +50,7 @@ class ShipmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateShipmentRequest $request, Shipment $shipment)
+    public function update(ShipmentRequest $request, Shipment $shipment)
     {
         //
     }

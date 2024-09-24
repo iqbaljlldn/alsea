@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Fcl_container;
+use App\Models\Lcl_container;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Driver extends Model
 {
@@ -12,4 +14,12 @@ class Driver extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function fcl_container() {
+        return $this->hasOne(Fcl_container::class, 'id', 'driver_id');
+    }
+
+    public function lcl_container() {
+        return $this->hasOne(Lcl_container::class, 'id', 'driver_id');
+    }
 }

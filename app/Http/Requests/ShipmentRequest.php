@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreDriverRequest extends FormRequest
+class ShipmentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class StoreDriverRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id' => 'required|exists:users,id',
+            'company_id' => 'required|exists:company,id',
+            'mbl_number' => 'required|string',
+            'do_number' => 'required|string',
+            'si_number' => 'required|string',
+            'origin' => 'required|string',
+            'destination' => 'required|string',
+            'planning_stuffing' => 'required|string'
         ];
     }
 }
