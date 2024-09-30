@@ -23,13 +23,16 @@ class ShipmentRequest extends FormRequest
     {
         return [
             'user_id' => 'required|exists:users,id',
-            'company_id' => 'required|exists:company,id',
+            'company_id' => 'required|exists:companies,id',
             'mbl_number' => 'required|string',
             'do_number' => 'required|string',
             'si_number' => 'required|string',
             'origin' => 'required|string',
             'destination' => 'required|string',
-            'planning_stuffing' => 'required|string'
+            'type' => 'required|string',
+            'status_payment' => 'required|string',
+            'planning_stuffing' => 'required|string',
+            'status_shipment' => 'required|string'
         ];
     }
 }

@@ -22,9 +22,9 @@ class AttachmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'shipment_id' => 'required|exist:shipment,id',
-            'file_type' => 'required',
-            'file_path' => 'required|image'
+            'shipment_id' => 'required|exists:shipments,id',
+            'file_type' => 'required|string',
+            'file_path' => 'required|file|mimes:jpg,jpeg,png,svg'
         ];
     }
 }

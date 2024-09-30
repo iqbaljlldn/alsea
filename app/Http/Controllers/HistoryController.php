@@ -12,7 +12,9 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        //
+        $histories = History::with(['shipment','user'])->latest()->paginate(10);
+
+        return response()->json([$histories]);
     }
 
     /**
@@ -20,7 +22,9 @@ class HistoryController extends Controller
      */
     public function create()
     {
-        //
+        $history = History::with(['shipment','user'])->get();
+
+        return response()->json([$history]);
     }
 
     /**
@@ -28,7 +32,10 @@ class HistoryController extends Controller
      */
     public function store(HistoryRequest $request)
     {
-        //
+        $data = $request->all();
+        $item = History::create($data);
+
+        return response()->json([$item]);
     }
 
     /**

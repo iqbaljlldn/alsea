@@ -23,10 +23,10 @@ class HistoryRequest extends FormRequest
     {
         return [
             'shipment_id' => 'required|exists:shipments,id',
-            'related_id' => 'required',
+            'related_id' => 'required|string',
             'related_type' => 'required|in:App\Models\Fcl_container, App\Models\Lcl_container',
             'user_id' => 'required|exists:users,id',
-            'action_type' => 'required',
+            'action_type' => 'required|string',
         ];
     }
 }

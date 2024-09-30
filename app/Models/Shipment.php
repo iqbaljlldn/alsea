@@ -23,6 +23,9 @@ class Shipment extends Model
         'origin',
         'destination',
         'planning_stuffing',
+        'type',
+        'status_payment',
+        'status_shipment',
         ];
 
         public function attachment() {

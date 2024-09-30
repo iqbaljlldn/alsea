@@ -25,10 +25,16 @@ class Lcl_containerRequest extends FormRequest
             'shipment_id' => 'required|exists:shipments,id',
             'driver_id' => 'required|exists:drivers,id',
             'plate_number' => 'required|string',
-            'photo_truck' => 'required|image',
-            'photo_sim' => 'required|image',
+            'photo_truck' => 'required|file|mimes:jpg,jpeg,png,svg',
+            'photo_sim' => 'required|file|mimes:jpg,jpeg,png,svg',
             'type_truck' => 'required|string',
             'size_truck' => 'required|string',
+            'departure_time' => 'required|string',
+            'arrival_time' => 'required|string',
+            'in_factory_time' => 'required|string',
+            'out_factory_time' => 'required|string',
+            'in_warehouse_time' => 'required|string',
+            'out_warehouse_time' => 'required|string',
         ];
     }
 }

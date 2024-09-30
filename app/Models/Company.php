@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Shipment;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Company extends Model
 {
@@ -11,5 +12,9 @@ class Company extends Model
 
     protected $fillable = [
         'name',
-    ];    
+    ];
+
+    public function shipment() {
+        return $this->hasOne(Shipment::class,'id','company_id');
+    }
 }

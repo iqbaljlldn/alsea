@@ -12,7 +12,9 @@ class NotifController extends Controller
      */
     public function index()
     {
-        //
+        $notifs = Notif::with('user')->get();
+
+        return response()->json([$notifs]);
     }
 
     /**
@@ -20,7 +22,9 @@ class NotifController extends Controller
      */
     public function create()
     {
-        //
+        $notifs = Notif::with('user')->get();
+
+        return response()->json([$notifs]);
     }
 
     /**
@@ -28,15 +32,20 @@ class NotifController extends Controller
      */
     public function store(NotifRequest $request)
     {
-        //
+        $data = $request->all();
+        $item = Notif::create($data);
+
+        return response()->json([$data]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Notif $notif)
+    public function show(NotifRequest $request, $id)
     {
-        //
+        $item = Notif::with('user')->findOrFail($id);
+
+        return response()->json([$item]);
     }
 
     /**

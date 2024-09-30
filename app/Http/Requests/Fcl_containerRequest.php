@@ -22,14 +22,20 @@ class Fcl_containerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'shipment_id' => 'required|exist:shipments,id',
-            'driver_id' => 'required|exist:drivers,id',
+            'shipment_id' => 'required|exists:shipments,id',
+            'driver_id' => 'required|exists:drivers,id',
             'plate_number' => 'required|string',
             'seal_number' => 'required|string',
-            'photo_container' => 'required|image',
-            'photo_seal' => 'required|image',
+            'photo_container' => 'required|file|mimes:jpg,jpeg,png',
+            'photo_seal' => 'required|file|mimes:jpg,jpeg,png',
             'type_container' => 'required|string',
             'date_stuffing' => 'required|date',
+            'departure_time' => 'required|string',
+            'arrival_time' => 'required|string',
+            'in_factory_time' => 'required|string',
+            'out_factory_time' => 'required|string',
+            'in_port_time' => 'required|string',
+            'out_port_time' => 'required|string',
         ];
     }
 }

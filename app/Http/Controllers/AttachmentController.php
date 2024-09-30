@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Attachment;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\AttachmentRequest;
+use App\Models\Shipment;
 
 class AttachmentController extends Controller
 {
@@ -13,7 +15,7 @@ class AttachmentController extends Controller
      */
     public function index()
     {
-        $attachments = Attachment::all();
+        $attachments = Attachment::with(['shipment'])->get();
 
         return response()->json([$attachments]);
     }
@@ -34,9 +36,10 @@ class AttachmentController extends Controller
     public function store(AttachmentRequest $request)
     {
         $data = $request->all();
+        $data['file_path'] = $request->file('file_path')->store('assets/attachment', 'public');
         $attachment = Attachment::create($data);
 
-        return response()->json([$attachment]);
+        return response()->json(['item' => $attachment]);
     }
 
     /**
@@ -44,9 +47,9 @@ class AttachmentController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $attachment = Attachment::findOrFail($id);
+        $item = Attachment::with('shipment')->findOrFail($id);
 
-        return response()->json([$attachment]);
+        return response()->json([$item]);
     }
 
     /**
@@ -54,21 +57,28 @@ class AttachmentController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $data = Attachment::findOrFail($id);
+        $item = Attachment::with(['shipment'])->findOrFail($id);
 
-        return response()->json([$data]);
+        return response()->json([$item]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(AttachmentRequest $request, $id)
     {
         $data = $request->all();
-        $item = Attachment::findOrFail($id);
-        $item->update($data);
+        $attachment = Attachment::findOrFail($id);
+        if ($request->hasFile('file_path')) {
+            if ($attachment->file_path) {
+                Storage::disk('public')->delete($attachment->file_path);
+            }
+            $data['file_path'] = $request->file('file_path')->store('assets/attachment', 'public');
+        }
 
-        return response()->json([$item]);
+        $attachment->update($data);
+
+        return response()->json(['data' => $attachment]);
     }
 
     /**
