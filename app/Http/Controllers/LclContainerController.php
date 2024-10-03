@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\History;
 use App\Models\Lcl_container;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Lcl_containerRequest;
@@ -36,9 +37,16 @@ class LclContainerController extends Controller
         $data = $request->all();
         $data['photo_truck'] = $request->file('photo_truck')->store('assets/lcl-container', 'public');
         $data['photo_sim'] = $request->file('photo_sim')->store('assets/lcl-container', 'public');
-        $item = Lcl_container::create($data);
+        $container = Lcl_container::create($data);
+        $history = History::create([
+            'shipment_id' => $data['shipment_id'],
+            'user_id' => '1',
+            'containerable_id' => $container->id,
+            'containerable_type' => Lcl_container::class,
+            'action_type' => 'created'
+        ]);
 
-        return response()->json([$item]);
+        return response()->json(['container' => $container, 'history' => $history]);
     }
 
     /**
@@ -84,7 +92,15 @@ class LclContainerController extends Controller
         
         $item->update($data);
 
-        return response()->json([$item]);
+        $history = History::create([
+            'shipment_id' => $data['shipment_id'],
+            'user_id' => '1',
+            'containerable_id' => $item->id,
+            'containerable_type' => Lcl_container::class,
+            'action_type' => 'updated'
+        ]);
+
+        return response()->json(['container' => $item, 'history' => $history]);
     }
 
     /**

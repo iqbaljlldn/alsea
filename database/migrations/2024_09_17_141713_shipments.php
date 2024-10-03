@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('origin');
             $table->string('destination');
             $table->string('type');
-            $table->foreignId('shipper_id');
+            $table->foreignId('company_id');
             $table->date('planning_stuffing');
             $table->string('status_payment');
-            $table->date('status_shipment');
+            $table->string('status_shipment');
             $table->string('mbl_number');
             $table->string('do_number');
             $table->string('si_number');

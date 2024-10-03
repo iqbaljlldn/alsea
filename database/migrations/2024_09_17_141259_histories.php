@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('histories', function(Blueprint $table) {
             $table->id();
             $table->foreignId('shipment_id');
+            $table->morphs('containerable');
             $table->foreignId('user_id');
             $table->string('action_type');
             $table->timestamps();

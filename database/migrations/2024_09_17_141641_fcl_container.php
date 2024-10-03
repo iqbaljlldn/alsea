@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('shipment_id');
             $table->foreignId('driver_id');
             $table->string('plate_number');
-            $table->string('sea_number');
+            $table->string('seal_number');
             $table->string('photo_container');
             $table->string('photo_seal');
             $table->string('type_container');
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->timestamp('out_factory_time');
             $table->timestamp('in_port_time');
             $table->timestamp('out_port_time');
+            $table->timestamps();
         });
     }
 

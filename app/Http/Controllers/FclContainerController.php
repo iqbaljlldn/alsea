@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\History;
 use App\Models\Fcl_container;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Fcl_containerRequest;
@@ -33,12 +34,19 @@ class FclContainerController extends Controller
      */
     public function store(Fcl_containerRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $data['photo_container'] = $request->file('photo_container')->store('assets/fcl-container', 'public');
         $data['photo_seal'] = $request->file('photo_seal')->store('assets/fcl-container', 'public');
-        $item = Fcl_container::create($data);
+        $container = Fcl_container::create($data);
+        $history = History::create([
+            'shipment_id' => $data['shipment_id'],
+            'user_id' => '1',
+            'containerable_id' => $container->id,
+            'containerable_type' => Fcl_container::class,
+            'action_type' => 'created'
+        ]);
 
-        return response()->json(['data' => $item]);
+        return response()->json(['container' => $container, 'history' => $history]);
     }
 
     /**
@@ -81,10 +89,18 @@ class FclContainerController extends Controller
             }
             $data['photo_seal'] = $request->file('photo_seal')->store('assets/fcl-container', 'public');
         }
-        
+
         $item->update($data);
 
-        return response()->json([$item]);
+        $history = History::create([
+            'shipment_id' => $data['shipment_id'],
+            'user_id' => '1',
+            'containerable_id' => $item->id,
+            'containerable_type' => Fcl_container::class,
+            'action_type' => 'updated'
+        ]);
+
+        return response()->json(['container' => $item, 'history' => $history]);
     }
 
     /**

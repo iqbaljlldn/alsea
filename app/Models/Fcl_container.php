@@ -6,7 +6,7 @@ use App\Models\Driver;
 use App\Models\History;
 use App\Models\Shipment;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Fcl_container extends Model
@@ -38,6 +38,6 @@ class Fcl_container extends Model
     }
 
     public function history() {
-        return $this->morphOne(History::class, 'container');
+        return $this->morphMany(History::class, 'containerable');
     }
 }

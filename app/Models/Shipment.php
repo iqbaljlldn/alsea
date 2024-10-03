@@ -32,14 +32,6 @@ class Shipment extends Model
             return $this->hasOne(Attachment::class, 'id', 'shipment_id');
         }
 
-        public function lcl_container() {
-            return $this->hasOne(Lcl_container::class, 'id', 'shipment_id');
-        }
-
-       public function fcl_container() {
-           return $this->hasOne(Fcl_container::class, 'id', 'shipment_id');
-        }
-
         public function company() {
             return $this->belongsTo(Company::class, 'company_id', 'id');
         }

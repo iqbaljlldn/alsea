@@ -14,11 +14,10 @@ class History extends Model
 
     protected $fillable = [
         'shipment_id',
-        'container_id',
         'user_id',
         'action_type',
-        'related_id',
-        'related_type'
+        'containerable_id',
+        'containerable_type'
     ];
 
     public function user() {
@@ -27,7 +26,7 @@ class History extends Model
     public function shipment() {
         return $this->belongsTo(Shipment::class, 'shipment_id','id');
     }
-    public function container() {
+    public function containerable() {
         return $this->morphTo();
     }
 }

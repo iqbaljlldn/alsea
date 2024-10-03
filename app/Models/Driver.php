@@ -13,6 +13,7 @@ class Driver extends Model
 
     protected $fillable = [
         'name',
+        'contact',
     ];
 
     public function fcl_container() {

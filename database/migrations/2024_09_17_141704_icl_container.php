@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('icl_containers', function (Blueprint $table) {
+        Schema::create('lcl_containers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('shipment_id');
             $table->foreignId('driver_id');
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->timestamp('out_factory_time');
             $table->timestamp('in_warehouse_time');
             $table->timestamp('out_warehouse_time');
+            $table->timestamps();
         });
     }
 
@@ -34,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExist('icl_containers');
+        Schema::dropIfExist('lcl_containers');
     }
 };

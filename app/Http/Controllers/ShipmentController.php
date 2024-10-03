@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\History;
 use App\Models\Shipment;
-use App\Http\Requests\ShipmentRequest;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\ShipmentRequest;
+
 class ShipmentController extends Controller
 {
     /**
@@ -33,9 +35,9 @@ class ShipmentController extends Controller
     public function store(ShipmentRequest $request)
     {
         $data = $request->all();
-        $item = Shipment::create($data);
+        $shipment = Shipment::create($data);
 
-        return response()->json([$item]);
+        return response()->json(['shipment' => $shipment]);
     }
 
     /**

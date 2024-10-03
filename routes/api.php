@@ -4,7 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DriverController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\AttachmentController;
@@ -59,3 +61,10 @@ Route::get('lcl-container/{id}', [LclContainerController::class, 'show'])->name(
 Route::post('lcl-container/store', [LclContainerController::class, 'store'])->name('lcl-container-store');
 Route::put('lcl-container/{id}', [LclContainerController::class, 'update'])->name('lcl-container-update');
 Route::delete('lcl-container/{id}', [LclContainerController::class, 'destroy'])->name('lcl-container-delete');
+
+Route::get('history', [HistoryController::class, 'index'])->name('history');
+Route::get('history/{id}', [HistoryController::class, 'show'])->name('history-show');
+
+Route::get('user', [UserController::class, 'index'])->name('users');
+Route::get('user/{id}', [UserController::class, 'show'])->name('user-show');
+Route::delete('user/{id}', [UserController::class, 'destroy'])->name('user-delete');

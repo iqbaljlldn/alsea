@@ -40,6 +40,6 @@ class Lcl_container extends Model
 
     public function history()
     {
-        return $this->morphOne(History::class, 'container');
+        return $this->morphMany(History::class, 'containerable');
     }
 }

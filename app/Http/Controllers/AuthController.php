@@ -15,14 +15,13 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'role_id' => 'required|exists:roles,id',
+            'role_id' => 'sometimes|exists:roles,id',
             'password'  => 'required',
         ], [
             'name.required' => 'Nama harus diisi',
             'email.required' => 'Email harus diisi',
             'email.email' => 'Format tidak sesuai',
             'email.unique' => 'Email sudah terpakai!',
-            'role_id.required' => 'Jabatan harus diisi',
             'password.required' => 'Password harus diisi',
         ]);
 
